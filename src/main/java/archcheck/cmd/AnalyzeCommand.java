@@ -94,6 +94,11 @@ public class AnalyzeCommand implements Callable<Integer> {
         System.out.println("Absent nodes: " + diffResult.removedNodes);
         System.out.println("Absent edges: " + diffResult.removedEdges);
 
+        if (!diffResult.addedNodes.isEmpty() || !diffResult.addedEdges.isEmpty() ||
+                !diffResult.removedNodes.isEmpty() || !diffResult.removedEdges.isEmpty()) {
+            return 1;
+        }
+
         return 0;
     }
 }
