@@ -1,0 +1,4 @@
+build/
+
+distribution/bin/*
+!distribution/bin/archcheck
