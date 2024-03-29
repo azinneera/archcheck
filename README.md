@@ -1,2 +1,2 @@
-# archctl
-archctl
+# archcheck
+archcheck
