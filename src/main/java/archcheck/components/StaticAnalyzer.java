@@ -32,7 +32,7 @@ public class StaticAnalyzer {
                 if (nodeValue.isEmpty() && style != null && style.contains("shape=partialRectangle")) {
                     nodeMap.put(nodeId, "external");
                     dependencyMap.put(nodeMap.get(nodeId), new HashSet<>());
-                } else if (!nodeValue.trim().isEmpty() && (style == null || !style.contains("shape=hexagon"))){
+                } else if (!nodeValue.trim().isEmpty() && (style == null || !style.contains("shape=mxgraph.basic.octagon2"))){
                     nodeMap.put(nodeId, nodeValue.replaceAll("&nbsp;", " ").trim());
                     dependencyMap.put(nodeMap.get(nodeId), new HashSet<>());
                 }
