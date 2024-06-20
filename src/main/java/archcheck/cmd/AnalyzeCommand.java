@@ -11,7 +11,11 @@ import picocli.CommandLine;
 
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +51,9 @@ public class AnalyzeCommand implements Callable<Integer> {
 
         // 3. Dump the reference service dependency graph (if asked for)
         if (dumpGraphs) {
-            outStream.println(Reporter.generateDotGraph(dependencyMap));
+            String depGraph = Reporter.generateDotGraph(dependencyMap);
+            outStream.println(depGraph);
+            Files.write(Paths.get("intended.dot"), depGraph.getBytes(), StandardOpenOption.CREATE);
         }
 
         // 4. Construct the modified architecture using component yaml files
@@ -59,7 +65,9 @@ public class AnalyzeCommand implements Callable<Integer> {
 
         // 5. Dump the reference service dependency graph (if asked for)
         if (dumpGraphs) {
-            outStream.println(Reporter.generateDotGraph(modifiedEdgeMap));
+            String depGraph = Reporter.generateDotGraph(modifiedEdgeMap);
+            outStream.println(depGraph);
+            Files.write(Paths.get("modified.dot"), depGraph.getBytes(), StandardOpenOption.CREATE);
         }
 
         // 6. Generate the diff of the graphs
